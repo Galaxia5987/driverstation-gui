@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:nt4/nt4.dart';
 
 class DashboardState {
-  static const String _robotAddress = kDebugMode ? '127.0.0.1' : '10.30.15.2';
+  static const String _robotAddress = kDebugMode ? '127.0.0.1' : '10.59.87.2';
 
   late NT4Client _client;
 
