@@ -1,8 +1,6 @@
 import 'package:dashboard24/services/dashboard_state.dart';
-import 'package:dashboard24/widgets/driver/chute_selector.dart';
-import 'package:dashboard24/widgets/driver/climb_selector.dart';
-import 'package:dashboard24/widgets/driver/match_timer.dart';
-import 'package:dashboard24/widgets/driver/scoring_mode.dart';
+import 'package:dashboard24/widgets/driver/branch_selector.dart';
+import 'package:dashboard24/widgets/driver/reef_selector.dart';
 import 'package:flutter/material.dart';
 
 class Dashboard extends StatefulWidget {
@@ -44,9 +42,9 @@ class _DashboardState extends State<Dashboard> {
         child: Stack(
           children: [
             Align(
-              alignment: Alignment.bottomRight,
+              alignment: Alignment.bottomLeft,
               child: Padding(
-                padding: const EdgeInsets.all(4.0),
+                padding: const EdgeInsets.all(40),
                 child: StreamBuilder(
                   stream: widget.dashboardState.connectionStatus(),
                   builder: (context, snapshot) {
@@ -63,36 +61,21 @@ class _DashboardState extends State<Dashboard> {
               ),
             ),
             Align(
-              alignment: _redAlliance ? Alignment.topLeft : Alignment.topRight,
-              child: ChuteSelector(
+              alignment: Alignment.centerRight,
+              child: BranchSelector(
                 dashboardState: widget.dashboardState,
                 redAlliance: _redAlliance,
               ),
             ),
             Align(
               alignment:
-                  _redAlliance ? Alignment.bottomLeft : Alignment.bottomRight,
+                  Alignment.center,
               child: Padding(
-                padding: const EdgeInsets.only(left: 40),
-                child: ClimbSelector(
+                padding: const EdgeInsets.all(40),
+                child: ReefSelector(
                   dashboardState: widget.dashboardState,
                   redAlliance: _redAlliance,
                 ),
-              ),
-            ),
-            Align(
-              alignment: _redAlliance ? Alignment.topRight : Alignment.topLeft,
-              child: Column(
-                children: [
-                  ScoringMode(
-                    dashboardState: widget.dashboardState,
-                    redAlliance: _redAlliance,
-                  ),
-                  MatchTimer(dashboardState: widget.dashboardState),
-                  // PickupMode(
-                  //   dashboardState: widget.dashboardState,
-                  // ),
-                ],
               ),
             ),
           ],

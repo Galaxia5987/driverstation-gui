@@ -10,12 +10,12 @@ class DashboardState {
 
   late NT4Subscription _matchTimeSub;
   late NT4Subscription _redAllianceSub;
-  late NT4Subscription _scoringModeSub;
-  late NT4Subscription _chutePosSub;
 
-  late NT4Topic _climbPosPub;
+  late NT4Topic _reefPosePub;
+  late NT4Topic _branchPosePub;
 
-  int _climbPos = 1;
+  int _reefPose = 1;
+  int _branchPose = 1;
 
   bool _connected = false;
 
@@ -32,15 +32,13 @@ class DashboardState {
     _matchTimeSub = _client.subscribePeriodic('/SmartDashboard/MatchTime', 1.0);
     _redAllianceSub =
         _client.subscribePeriodic('/SmartDashboard/IsRedAlliance', 1.0);
-    _scoringModeSub =
-        _client.subscribePeriodic('/AdvantageKit/RealOutputs/ScoringMode', 0.5);
-    _chutePosSub =
-        _client.subscribePeriodic('/AdvantageKit/RealOutputs/ChutePos', 0.5);
 
-    _climbPosPub = _client.publishNewTopic(
-        '/Dashboard/TargetClimbPos', NT4TypeStr.typeInt);
+    _reefPosePub = _client.publishNewTopic(
+        '/Dashboard/TargetReefPose', NT4TypeStr.typeInt);
+    _branchPosePub = _client.publishNewTopic(
+      'Dashboard/TargetBranchPose', NT4TypeStr.typeInt);
 
-    _client.setProperties(_climbPosPub, false, true);
+    _client.setProperties(_reefPosePub, false, true);
 
     Timer.periodic(const Duration(seconds: 1), (timer) {
       if (_connected) {
@@ -69,30 +67,22 @@ class DashboardState {
     }
   }
 
-  Stream<int> scoringMode() async* {
-    await for (final value in _scoringModeSub.stream(yieldAll: true)) {
-      if (value is int) {
-        yield value;
-      }
+  void setReefPose(int reefPose) {
+    if (reefPose <= 2 && reefPose >= 0) {
+      _reefPose = reefPose;
+      _client.addSample(_reefPosePub, _reefPose);
     }
   }
 
-  Stream<int> chutePos() async* {
-    await for (final value in _chutePosSub.stream(yieldAll: true)) {
-      if (value is int) {
-        yield value;
-      }
-    }
-  }
-
-  void setClimbPos(int climbPos) {
-    if (climbPos <= 2 && climbPos >= 0) {
-      _climbPos = climbPos;
-      _client.addSample(_climbPosPub, _climbPos);
+  void setBranchPose(int branchPose) {
+    if (branchPose <= 2 && branchPose >= 0) {
+      _branchPose = branchPose;
+      _client.addSample(_branchPosePub, _branchPose);
     }
   }
 
   void _sendAll() {
-    _client.addSample(_climbPosPub, _climbPos);
+    _client.addSample(_reefPosePub, _reefPose);
+    _client.addSample(_branchPosePub, _branchPose);
   }
 }

@@ -1,21 +1,21 @@
 import 'package:dashboard24/services/dashboard_state.dart';
 import 'package:flutter/material.dart';
 
-class ClimbSelector extends StatefulWidget {
+class ReefSelector extends StatefulWidget {
   final DashboardState dashboardState;
   final bool redAlliance;
 
-  const ClimbSelector({
+  const ReefSelector({
     super.key,
     required this.dashboardState,
     required this.redAlliance,
   });
 
   @override
-  State<ClimbSelector> createState() => _ClimbSelectorState();
+  State<ReefSelector> createState() => _ReefSelectorState();
 }
 
-class _ClimbSelectorState extends State<ClimbSelector> {
+class _ReefSelectorState extends State<ReefSelector> {
   int _selected = 1;
 
   @override
@@ -34,12 +34,12 @@ class _ClimbSelectorState extends State<ClimbSelector> {
         padding: const EdgeInsets.all(8.0),
         child: Stack(
           children: [
-            Image.asset('images/stage.png'),
+            widget.redAlliance ? Image.asset('images/reef_red.png') : Image.asset('images/reef_blue.png'),
             Positioned(
               left: 90,
               top: 220,
               child: Transform.scale(
-                scale: 5.0,
+                scale: 3.0,
                 child: Checkbox(
                   value: _selected == 0,
                   splashRadius: 9,
@@ -51,7 +51,7 @@ class _ClimbSelectorState extends State<ClimbSelector> {
                     setState(() {
                       if (value ?? false) {
                         _selected = 0;
-                        widget.dashboardState.setClimbPos(_selected);
+                        widget.dashboardState.setReefPose(_selected);
                       }
                     });
                   },
@@ -62,7 +62,7 @@ class _ClimbSelectorState extends State<ClimbSelector> {
               left: 200,
               top: 35,
               child: Transform.scale(
-                scale: 5.0,
+                scale: 3.0,
                 child: Checkbox(
                   value: _selected == 1,
                   splashRadius: 9,
@@ -74,7 +74,7 @@ class _ClimbSelectorState extends State<ClimbSelector> {
                     setState(() {
                       if (value ?? false) {
                         _selected = 1;
-                        widget.dashboardState.setClimbPos(_selected);
+                        widget.dashboardState.setReefPose(_selected);
                       }
                     });
                   },
@@ -85,7 +85,7 @@ class _ClimbSelectorState extends State<ClimbSelector> {
               left: 315,
               top: 220,
               child: Transform.scale(
-                scale: 5.0,
+                scale: 3.0,
                 child: Checkbox(
                   value: _selected == 2,
                   splashRadius: 9,
@@ -97,7 +97,7 @@ class _ClimbSelectorState extends State<ClimbSelector> {
                     setState(() {
                       if (value ?? false) {
                         _selected = 2;
-                        widget.dashboardState.setClimbPos(_selected);
+                        widget.dashboardState.setReefPose(_selected);
                       }
                     });
                   },
