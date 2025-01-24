@@ -36,7 +36,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   nt4: ^1.3.3
-  window_manager: ^0.3.7
+  window_manager: ^0.4.3
 
 dev_dependencies:
   flutter_test:
@@ -47,7 +47,7 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^3.0.0
+  flutter_lints: ^5.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -63,7 +63,10 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - images/stage.png
-    - images/chute.png
+    - images/reef_branch.png
+    - images/reef_red.png
+    - images/reef_blue.png
+    - images/coral_station.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
