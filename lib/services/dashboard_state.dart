@@ -36,7 +36,7 @@ class DashboardState {
     _reefPosePub = _client.publishNewTopic(
         '/Dashboard/TargetReefPose', NT4TypeStr.typeInt);
     _branchPosePub = _client.publishNewTopic(
-      'Dashboard/TargetBranchPose', NT4TypeStr.typeInt);
+      '/Dashboard/TargetBranchPose', NT4TypeStr.typeInt);
 
     _client.setProperties(_reefPosePub, false, true);
 
