@@ -68,17 +68,13 @@ class DashboardState {
   }
 
   void setReefPose(int reefPose) {
-    if (reefPose <= 2 && reefPose >= 0) {
       _reefPose = reefPose;
       _client.addSample(_reefPosePub, _reefPose);
-    }
   }
 
   void setBranchPose(int branchPose) {
-    if (branchPose <= 2 && branchPose >= 0) {
-      _branchPose = branchPose;
-      _client.addSample(_branchPosePub, _branchPose);
-    }
+    _branchPose = branchPose;
+    _client.addSample(_branchPosePub, _branchPose);
   }
 
   void _sendAll() {

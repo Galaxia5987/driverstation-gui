@@ -1,6 +1,7 @@
 import 'package:dashboard24/services/dashboard_state.dart';
 import 'package:dashboard24/widgets/driver/branch_selector.dart';
 import 'package:dashboard24/widgets/driver/reef_selector.dart';
+import 'package:dashboard24/widgets/driver/feeder_selector.dart';
 import 'package:flutter/material.dart';
 
 class Dashboard extends StatefulWidget {
@@ -42,9 +43,9 @@ class _DashboardState extends State<Dashboard> {
         child: Stack(
           children: [
             Align(
-              alignment: Alignment.bottomLeft,
+              alignment: Alignment.topLeft,
               child: Padding(
-                padding: const EdgeInsets.all(40),
+                padding: const EdgeInsets.all(20),
                 child: StreamBuilder(
                   stream: widget.dashboardState.connectionStatus(),
                   builder: (context, snapshot) {
@@ -69,15 +70,25 @@ class _DashboardState extends State<Dashboard> {
             ),
             Align(
               alignment:
-                  Alignment.center,
+                  Alignment.centerLeft,
               child: Padding(
-                padding: const EdgeInsets.all(40),
+                padding: const EdgeInsets.fromLTRB(440, 40, 40, 40),
                 child: ReefSelector(
                   dashboardState: widget.dashboardState,
                   redAlliance: _redAlliance,
                 ),
               ),
             ),
+            Align(
+              alignment:  Alignment.bottomCenter,
+              child: Padding(
+                padding: const EdgeInsets.all(40),
+                child: FeederSelector(
+                  dashboardState: widget.dashboardState,
+                  redAlliance: _redAlliance
+                ),
+              ),
+            )
           ],
         ),
       ),
