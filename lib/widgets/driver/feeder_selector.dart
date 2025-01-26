@@ -46,7 +46,7 @@ class _FeederSelectorState extends State<FeederSelector> {
               child: Transform.scale(
                 scale: 5, 
                 child: Checkbox(
-                  value: _selected == 11,
+                  value: _selected == 12,
                   splashRadius: 9,
                   checkColor: Colors.white,
                   activeColor: activeColor,
@@ -55,7 +55,7 @@ class _FeederSelectorState extends State<FeederSelector> {
                   onChanged: (value) {
                     setState(() {
                       if (value ?? false) {
-                        _selected = 11;
+                        _selected = 12;
                         widget.dashboardState.setBranchPose(feederValue);
                         widget.dashboardState.setReefPose(_selected);
                       }
@@ -85,7 +85,7 @@ class _FeederSelectorState extends State<FeederSelector> {
               child: Transform.scale(
                 scale: 5,
                 child: Checkbox(
-                  value: _selected == 12, // Different value for the second checkbox
+                  value: _selected == 13, // Different value for the second checkbox
                   splashRadius: 9,
                   checkColor: Colors.white,
                   activeColor: activeColor,
@@ -94,7 +94,7 @@ class _FeederSelectorState extends State<FeederSelector> {
                   onChanged: (value) {
                     setState(() {
                       if (value ?? false) {
-                        _selected = 12;
+                        _selected = 13;
                         widget.dashboardState.setBranchPose(feederValue);
                         widget.dashboardState.setReefPose(_selected);
                       }
