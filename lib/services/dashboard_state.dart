@@ -39,6 +39,7 @@ class DashboardState {
       '/Dashboard/TargetBranchPose', NT4TypeStr.typeInt);
 
     _client.setProperties(_reefPosePub, false, true);
+    _client.setProperties(_branchPosePub, false, true);
 
     Timer.periodic(const Duration(seconds: 1), (timer) {
       if (_connected) {
